@@ -15,7 +15,19 @@ class CreateBooksTable extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->id();
+            $table->integer('isbn')->length(4);
+            $table->string('title');
+            $table->integer('year');
+            $table->unsignedBigInteger('publisher_id');
+            $table->unsignedBigInteger('author_id');
+            $table->unsignedBigInteger('catalog_id');
+            $table->integer('qty');
+            $table->integer('price');
             $table->timestamps();
+
+            $table->foreign('publisher_id')->references('id')->on('publishers');
+            $table->foreign('author_id')->references('id')->on('authors');
+            $table->foreign('catalog_id')->references('id')->on('catalogs');
         });
     }
 

@@ -15,6 +15,11 @@ class CreateMembersTable extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->length(64);
+            $table->char('gender');
+            $table->char('phone_number')->length(14);
+            $table->string('email')->length(50);
+            $table->text('address');
             $table->timestamps();
         });
     }

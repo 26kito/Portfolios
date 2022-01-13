@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.login.app')
 
 @section('title')
     Login Page
