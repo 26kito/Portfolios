@@ -67,16 +67,16 @@
                     <div class="wrap-input100 validate-input" data-validate = "Password is required">
                         <input id="password-confirm" type="password" class="form-control input100 @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password" placeholder="Enter your password again">
                         
-                        @error('password')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
-                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        <i class="fa fa-lock" aria-hidden="true"></i>
                         </span>
+
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                     </div>
                     {{-- End of Password --}}
 

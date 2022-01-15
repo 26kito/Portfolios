@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+
 use App\Models\Book;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,13 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $data['title'] = 'Books List';
+        // $books = Book::get();
+        $books = DB::table('books')
+                            ->join('authors', 'books.author_id', '=', 'authors.id')
+                            ->select('books.title', 'books.year', 'books.qty', 'books.price', 'authors.author_name')
+                            ->get();
+        return view('booksList', compact('books'), $data);
     }
 
     /**

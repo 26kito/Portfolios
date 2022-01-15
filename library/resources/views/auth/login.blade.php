@@ -23,16 +23,19 @@
                     <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
                         <input id="email" type="email" class="form-control input100 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email" autofocus>
 
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                         </span>
+                        
+                        @error('email')
+                            <script>
+                                alert( '{{ $message }}' );
+                            </script>
+                            {{-- <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span> --}}
+                        @enderror
                     </div>
                     {{-- End of Email --}}
 

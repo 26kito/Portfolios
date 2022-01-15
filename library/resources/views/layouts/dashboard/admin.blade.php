@@ -27,14 +27,56 @@
 
 <body>
     <div class="wrapper">
-        @yield('sidebar')
+        <div class="sidebar" data-image="{{ asset('assets/Light_Bootstrap/img/sidebar-5.jpg') }}">
+            <!-- Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+                Tip 2: you can also add an image using data-image tag -->
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a href="http://www.creative-tim.com" class="simple-text">
+                        Creative Tim
+                    </a>
+                </div>
+                <ul class="nav">
+                    <li class="nav-item {{ request()->is('home') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('home') }}">
+                            <i class="nc-icon nc-chart-pie-35"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ request()->is('books') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('books') }}">
+                            <i class="nc-icon nc-circle-09"></i>
+                            <p>Books</p>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ request()->is('authors') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('authors') }}">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>Authors</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="">
+                            <i class="nc-icon nc-paper-2"></i>
+                            <p>Typography</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="">
+                            <i class="nc-icon nc-atom"></i>
+                            <p>Icons</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <div class="main-panel">
             <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg " color-on-scroll="500">
+            <nav class="navbar navbar-expand-lg" color-on-scroll="500">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#pablo">Dashboard</a>
-                    <div class="collapse navbar-collapse" id="navigation">
-                        <ul class="navbar-nav">
+                    <a class="navbar-brand" href="{{ route('home') }}">Dashboard</a>
+                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                        <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->
                             @guest
                                 @if (Route::has('login'))
@@ -50,32 +92,33 @@
                                 @endif
                                 
                                 @else
-                                    <li class="dropdown nav-item">
-                                        <a id="navbarDropdownMenuLink" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                            {{ Auth::user()->name }}
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="no-icon">{{ Auth::user()->name }}</span>
                                         </a>
-        
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <a class="dropdown-item" href="">
+                                            <a class="dropdown-item" href="#">
                                                 {{ __('My Profile') }}
                                             </a>
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                                onclick="event.preventDefault();
-                                                            document.getElementById('logout-form').submit();">
-                                                {{ __('Sign Out') }}
-                                            </a>
-        
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                @csrf
-                                            </form>
                                         </div>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                            <span class="no-icon">{{ __('Log Out') }}</span>
+                                        </a>
+                                    </li>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                             @endguest
                         </ul>
                     </div>
                 </div>
             </nav>
             <!-- End of Navbar -->
+            @yield('content-header')
             
             <!-- Main Content -->
             <div class="content">
