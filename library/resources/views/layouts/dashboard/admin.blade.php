@@ -38,7 +38,8 @@
                 </div>
                 <ul class="nav">
                     <li class="nav-item {{ request()->is('home') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('home') }}">
+                        {{-- <a class="nav-link" href="{{ route('home') }}"> --}}
+                        <a class="nav-link" id="dashboard" onclick="dashboard()">
                             <i class="nc-icon nc-chart-pie-35"></i>
                             <p>Dashboard</p>
                         </a>
@@ -53,18 +54,6 @@
                         <a class="nav-link" href="{{ route('authors') }}">
                             <i class="nc-icon nc-notes"></i>
                             <p>Authors</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="">
-                            <i class="nc-icon nc-paper-2"></i>
-                            <p>Typography</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="">
-                            <i class="nc-icon nc-atom"></i>
-                            <p>Icons</p>
                         </a>
                     </li>
                 </ul>
@@ -168,6 +157,14 @@
         </div>
     </div>
     @include('layouts.dashboard.js')
+
     @stack('js')
+    <script>
+        function dashboard() {
+            $.get("{{ route('books') }}", (), function(data,status) {
+                alert('ok');
+            })
+        }
+    </script>
 </body>
 </html>
