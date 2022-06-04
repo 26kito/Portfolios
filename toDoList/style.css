@@ -1,11 +1,14 @@
 :root {
-	--dark: #374151;
+	/* --dark: #374151; */
+	/* --dark: RGB(17, 17, 17); */
+	--dark: #111111;
 	--darker: #1F2937;
 	--darkest: #111827;
 	--grey: #6B7280;
 	--pink: #EC4899;
 	--purple: #8B5CF6;
-	--light: #EEE;
+	/* --light: #EEE; */
+	--light: #e0e4e7;
 }
 
 * {
@@ -14,12 +17,18 @@
 	font-family: "Fira sans", sans-serif;
 }
 
+.form-switch {
+	position: fixed;
+	margin: 20px 35px;
+	right: 0;
+}
+
 body {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
 	color: #FFF;
-	background-color: var(--dark);
+	background: black;
 }
 
 header {
@@ -29,10 +38,10 @@ header {
 	margin: 0 auto;
 }
 
-header h1{ 
+header h1 { 
 	font-size: 2.5rem;
 	font-weight: 300;
-	color: var(--grey);
+	color: var(--light);
 	margin-bottom: 1rem;
 }
 
@@ -65,15 +74,16 @@ input, button {
 	color: var(--pink);
 	font-size: 1.25rem;
 	font-weight: 700;
-	background-image: linear-gradient(to right, var(--pink), var(--purple));
+	/* background: linear-gradient(to right, var(--pink), var(--purple));
 	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+	-webkit-text-fill-color: transparent; */
+	color: var(--light);
 	cursor: pointer;
 	transition: 0.4s;
 }
 
 #new-task-submit:hover {
-	opacity: 0.8;
+	opacity: 0.7;
 }
 
 #new-task-submit:active {
@@ -94,7 +104,7 @@ main {
 .task-list h2 {
 	font-size: 1.5rem;
 	font-weight: 300;
-	color: var(--grey);
+	color: var(--light);
 	margin-bottom: 1rem;
 }
 
