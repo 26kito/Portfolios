@@ -7,9 +7,8 @@ form.addEventListener('submit', (e) => {
 
     const task = input.value;
 
-    // Validation Can't Be Empty
+    // Validation Input Task Can't Be Empty
     if ( task.length != 0 ) {
-        
         let letters = /^[a-zA-Z\s]*$/g;
         // Validation Letters Only
         if ( task.match(letters) ) {
@@ -49,25 +48,45 @@ form.addEventListener('submit', (e) => {
         
             input.value = '';
         
+            // Edit
             task_edit_el.addEventListener('click', (e) => {
-                if (task_edit_el.innerText.toLowerCase() == "edit") {
+                if ( task_edit_el.innerText.toLowerCase() == "edit" ) {
                     task_edit_el.innerText = "Save";
                     task_input_el.removeAttribute("readonly");
                     task_input_el.focus();
                 } else {
-                    task_edit_el.innerText = "Edit";
-                    task_input_el.setAttribute("readonly", "readonly");
+                    // Validatian for Edit Field Can't Empty
+                    if ( task_input_el.value.length != 0 ) {
+                        // Validation for Edit Field Letters Only
+                        if ( task_input_el.value.match(letters) ) {
+                            task_edit_el.innerText = "Edit";
+                            task_input_el.setAttribute("readonly", "readonly");
+                        } else {
+                            let data = 'Only letter allowed!';
+                            modalShow(data);
+                        }
+                        // End of Validation for Edit Field Letters Only
+                    } else {
+                        let data = 'can\'t empty';
+                        modalShow(data);
+                    }
+                    // End of Validatian for Edit Field Can't Empty
                 }
             });
-        
+                
+            // Delete
             task_delete_el.addEventListener('click', (e) => {
                 list_el.removeChild(task_el);
             });
         } else {
-            $('#exampleModal').modal('show');
+            // Validation Letters Only
+            let data = 'Only letters allowed!';
+            modalShow(data);
         }
+    // Validation Input Task Can't Be Empty
     } else {
-        alert('can\'t empty')
+        let data = 'can\'t empty';
+        modalShow(data);
     }
 });
 
@@ -90,6 +109,10 @@ function toggleBtn() {
 }
 
 // Modal
+function modalShow(data) {
+    $('#exampleModal').modal('show');
+    $('.modal-body p').text(data);
+}
 function modalClose() {
     $('#exampleModal').modal('hide');
 }
